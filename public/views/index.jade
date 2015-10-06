@@ -1,13 +1,27 @@
 doctype html
-html(lang="en")
+html(lang="en" ng-app="myBlogApp")
   head
     title blog page
+    link(rel="stylesheet" type="text/css" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css")    
+    link(rel="stylesheet" type="text/css" href="../../bower_components/bootstrap-material-design/dist/css/material.min.css")    
+    link(rel="stylesheet" type="text/css" href="../../bower_components/bootstrap-material-design/dist/css/ripples.min.css")    
     link(rel="stylesheet" type="text/css" href="../styles/css/styles.css")
   body
+    navigationbar
     h1 Welcome to AngularJS blog 
-    h3 Well this better work
+    div(ng-view)
 
-  // angular
-  script(src="../bower_components/angular/angular.min.js") 
-  // ngroute
-  script(src="../bower_components/angular-route/angular-route.min.js") 
+    //jquery
+    script(src="../../bower_components/jquery/dist/jquery.min.js")
+    //bootstrap material
+    script(src="../../bower_components/bootstrap-material-design/dist/js/material.min.js")
+    // angular
+    script(src="../../bower_components/angular/angular.min.js") 
+    // ngroute
+    script(src="../../bower_components/angular-route/angular-route.min.js")
+    //ngapp module
+    script(src="../scripts/app.module.js") 
+    //ng controllers.js
+    script(src="../scripts/controllers/controllers.js")
+    //ng navbar directive
+    script(src="../scripts/directives/navbar_directive.js")

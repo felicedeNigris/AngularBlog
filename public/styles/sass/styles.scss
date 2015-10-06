@@ -1,13 +1,12 @@
 $red: #77D3FF;
 $font-stack: Helvetica;
+$black: #000000;
 
-h3{
-  font-family: $font-stack;
-  color: $red;
+//over ride navbar material design color to black
+.navbar.navbar{
+  background-color:$black;
 }
-
-
-h1{
-  font-family:$font-stack;
-  color:$red;
+// override a to black w alpha
+a{
+  color:rgba(0,0,0,0.18);
 }

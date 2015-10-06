@@ -1,1 +1,29 @@
-<!DOCTYPE html><html lang="en"><head><title>blog page</title><link rel="stylesheet" type="text/css" href="../styles/css/styles.css"></head><body><h1>Welcome to AngularJS blog </h1><h3>Well this better work</h3></body><!-- angular--><script src="../bower_components/angular/angular.min.js"> </script><!-- ngroute--><script src="../bower_components/angular-route/angular-route.min.js"> </script></html>
+<!DOCTYPE html>
+<html lang="en" ng-app="myBlogApp">
+  <head>
+    <title>blog page</title>
+    <link rel="stylesheet" type="text/css" href="../../bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../../bower_components/bootstrap-material-design/dist/css/material.min.css">
+    <link rel="stylesheet" type="text/css" href="../../bower_components/bootstrap-material-design/dist/css/ripples.min.css">
+    <link rel="stylesheet" type="text/css" href="../styles/css/styles.css">
+  </head>
+  <body>
+    <navigationbar></navigationbar>
+    <h1>Welcome to AngularJS blog </h1>
+    <div ng-view></div>
+    <!--jquery-->
+    <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <!--bootstrap material-->
+    <script src="../../bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
+    <!-- angular-->
+    <script src="../../bower_components/angular/angular.min.js"> </script>
+    <!-- ngroute-->
+    <script src="../../bower_components/angular-route/angular-route.min.js"></script>
+    <!--ngapp module-->
+    <script src="../scripts/app.module.js"> </script>
+    <!--ng controllers.js-->
+    <script src="../scripts/controllers/controllers.js"></script>
+    <!--ng navbar directive-->
+    <script src="../scripts/directives/navbar_directive.js"></script>
+  </body>
+</html>

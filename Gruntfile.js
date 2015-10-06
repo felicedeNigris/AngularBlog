@@ -5,12 +5,12 @@ module.exports = function(grunt){
     pkg: grunt.file.readJSON('package.json'),
    
     // sass compliler 
-    sass: {                              
-      dist: {                            
+    sass: {                            
+      dist: {                           
         options: {                       
           style: 'compressed'
         },
-        files: {                         
+        files: {              
           'public/styles/css/styles.css': 'public/styles/sass/styles.scss', // 'destination': 'source' 
         }
       }
@@ -19,12 +19,15 @@ module.exports = function(grunt){
     jade:{
       compile:{
         options:{
+          pretty:true,
           data:{
             debug:false
           }
         },
         files:{
           'public/views/index.html':'public/views/index.jade',
+          'public/views/posts.html':'public/views/posts.jade',
+          'public/views/navbar.html':'public/views/navbar.jade',
         }
       }
     },
