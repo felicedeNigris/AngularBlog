@@ -8,7 +8,14 @@ var app=angular.module('myBlogApp',
         $routeProvider.when('/',{
             templateUrl: '../views/posts.html',
             controller: 'PostController'
-        }).otherwise({
+        }).when('/post/:id',{
+            templateUrl:'views/singlepost.html',
+            controller: 'SinglePostController'
+        }).when('/page/:id',{
+            templateUrl:'../views/page.html',
+            controller: 'PageController'
+        })
+        .otherwise({
           redirectTo: '/'
         });
     }

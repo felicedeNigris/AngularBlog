@@ -6,11 +6,11 @@ module.exports = function(grunt){
    
     // sass compliler 
     sass: {                            
-      dist: {                           
-        options: {                       
+      dist: {    
+        options: {
           style: 'compressed'
         },
-        files: {              
+        files: {
           'public/styles/css/styles.css': 'public/styles/sass/styles.scss', // 'destination': 'source' 
         }
       }
@@ -28,6 +28,8 @@ module.exports = function(grunt){
           'public/views/index.html':'public/views/index.jade',
           'public/views/posts.html':'public/views/posts.jade',
           'public/views/navbar.html':'public/views/navbar.jade',
+          'public/views/singlepost.html':'public/views/singlepost.jade',
+          'public/views/page.html':'public/views/page.jade'
         }
       }
     },
