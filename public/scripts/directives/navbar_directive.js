@@ -6,8 +6,6 @@ angular.module('app.directives', [])
                 $http.get('../../../data/pages.json').success(function(data){
                     $scope.pages = data;
                 });
-
-
             }],
 
             restrict:'E',

@@ -4,6 +4,7 @@ var app=angular.module('myBlogApp',
   'ngRoute',
   'app.controllers',
   'blogService',
+  'app.directives',
   'firebase'
   ])
     .constant('FURL','https://https://ngblogapp.firebaseio.com/')
@@ -16,13 +17,10 @@ var app=angular.module('myBlogApp',
             controller: 'SinglePostController'
         }).when('/page/:id',{
             templateUrl:'../views/page.html',
-            controller: ['PageController', 'blogPostsController'],
-            //activetab: 'data[$routeParams.id].title'
-        })
-        .otherwise({
+            controller: 'PageController'
+        }).otherwise({
           redirectTo: '/'
         });
     }
-  
 ]);
 
