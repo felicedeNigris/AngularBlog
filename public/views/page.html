@@ -1,0 +1,17 @@
+
+<div class="container">
+  <h1 class="page-header">{{page.title}}</h1>
+  <p>{{page.content}}</p>
+  <div ng-submit="blogPostsController.addPost(newpost)" class="form-horizontal">
+    <div ng-hide="page.title !== 'Create a Post'" class="form-group">
+      <textarea rows="3" ng-model="post.text" class="form-control"></textarea>
+      <button type="submit" class="btn btn-default">Publish</button>
+    </div>
+  </div>
+</div>
+<!--initialize ripple       -->
+<script type="text/javascript">
+  $(document).ready(function(){
+      $.material.init();
+  }); 
+</script>

@@ -1,0 +1,11 @@
+
+<div class="navbar navabar-default">
+  <div class="navbar-header">
+    <button type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse" class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/#/" class="navbar-brand">My Blog</a>
+  </div>
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav">
+      <li ng-repeat="page in pages" ng-class="{'active': activetab === page.title }"><a href="#/page/{{pages.indexOf(page)}}">{{page.title}}</a></li>
+    </ul>
+  </div>
+</div>

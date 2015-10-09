@@ -2,8 +2,11 @@
 var app=angular.module('myBlogApp',
   [
   'ngRoute',
-  'app.controllers'
+  'app.controllers',
+  'blogService',
+  'firebase'
   ])
+    .constant('FURL','https://https://ngblogapp.firebaseio.com/')
     .config(['$routeProvider', function($routeProvider){
         $routeProvider.when('/',{
             templateUrl: '../views/posts.html',
@@ -13,11 +16,13 @@ var app=angular.module('myBlogApp',
             controller: 'SinglePostController'
         }).when('/page/:id',{
             templateUrl:'../views/page.html',
-            controller: 'PageController'
+            controller: ['PageController', 'blogPostsController'],
+            //activetab: 'data[$routeParams.id].title'
         })
         .otherwise({
           redirectTo: '/'
         });
     }
-
+  
 ]);
+

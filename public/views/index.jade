@@ -8,13 +8,18 @@ html(lang="en" ng-app="myBlogApp")
     link(rel="stylesheet" type="text/css" href="../styles/css/styles.css")
   body
     navigationbar
-    h1 Welcome to AngularJS blog 
+
     div(ng-view)
+    
 
     //jquery
     script(src="../../bower_components/jquery/dist/jquery.min.js")
+    //bootstrap
+    script(src="../../bower_components/bootstrap/dist/js/bootstrap.min.js")
     //bootstrap material
     script(src="../../bower_components/bootstrap-material-design/dist/js/material.min.js")
+    //ripples
+    script(src="../../bower_components/bootstrap-material-design/dist/js/ripples.min.js")
     // angular
     script(src="../../bower_components/angular/angular.min.js") 
     // ngroute
@@ -25,3 +30,11 @@ html(lang="en" ng-app="myBlogApp")
     script(src="../scripts/controllers/controllers.js")
     //ng navbar directive
     script(src="../scripts/directives/navbar_directive.js")
+    //ng firebase
+    script(src="../../bower_components/firebase/firebase.js")
+    //ng fire 
+    script(src="../../bower_components/angularfire/dist/angularfire.min.js")
+    script(type="text/javascript").
+        $(document).ready(function(){
+            $.material.init();
+        });  

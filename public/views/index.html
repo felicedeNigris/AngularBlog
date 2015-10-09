@@ -9,12 +9,15 @@
   </head>
   <body>
     <navigationbar></navigationbar>
-    <h1>Welcome to AngularJS blog </h1>
     <div ng-view></div>
     <!--jquery-->
     <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+    <!--bootstrap-->
+    <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!--bootstrap material-->
     <script src="../../bower_components/bootstrap-material-design/dist/js/material.min.js"></script>
+    <!--ripples-->
+    <script src="../../bower_components/bootstrap-material-design/dist/js/ripples.min.js"></script>
     <!-- angular-->
     <script src="../../bower_components/angular/angular.min.js"> </script>
     <!-- ngroute-->
@@ -25,5 +28,14 @@
     <script src="../scripts/controllers/controllers.js"></script>
     <!--ng navbar directive-->
     <script src="../scripts/directives/navbar_directive.js"></script>
+    <!--ng firebase-->
+    <script src="../../bower_components/firebase/firebase.js"></script>
+    <!--ng fire -->
+    <script src="../../bower_components/angularfire/dist/angularfire.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+          $.material.init();
+      });  
+    </script>
   </body>
 </html>

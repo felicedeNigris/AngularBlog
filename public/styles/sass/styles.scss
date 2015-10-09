@@ -3,9 +3,9 @@ $font-stack: Helvetica;
 $black: #000000;
 
 //over ride navbar material design color to black
-.navbar.navbar{
+/* .navbar.navbar{
   background-color:$black;
-}
+} */
 // override a to black w alpha
 a{
   color:rgba(0,0,0,0.18);
