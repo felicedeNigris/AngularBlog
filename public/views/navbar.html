@@ -5,7 +5,12 @@
   </div>
   <div class="navbar-collapse collapse navbar-responsive-collapse">
     <ul class="nav navbar-nav">
-      <li ng-repeat="page in pages" ng-class="{'active': activetab === page.title }"><a href="#/page/{{pages.indexOf(page)}}">{{page.title}}</a></li>
+      <li ng-repeat="page in pages"><a href="#/page/{{pages.indexOf(page)}}">{{page.title}}</a></li>
     </ul>
+    <div class="navbar-collapse collapse navbar-responsive-collapse">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Create a Post Today</a></li>
+      </ul>
+    </div>
   </div>
 </div>

@@ -7,6 +7,9 @@ div(class="navbar navabar-default")
     a(class="navbar-brand" href="/#/") My Blog
   div(class="navbar-collapse collapse navbar-responsive-collapse")
     ul(class="nav navbar-nav")
-      li(ng-repeat="page in pages" ng-class="{'active': activetab === page.title }")
+      li(ng-repeat="page in pages")
         a(href="#/page/{{pages.indexOf(page)}}" ) {{page.title}}
-
+    div(class="navbar-collapse collapse navbar-responsive-collapse")
+      ul(class="nav navbar-nav")
+        li
+          a(href="#") Create a Post Today

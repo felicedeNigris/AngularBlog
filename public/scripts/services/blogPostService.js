@@ -1,6 +1,6 @@
 
 
-angular.module('blogService',['firebase','myBlogApp', 'FURL'])
+angular.module('blogService',['firebase','$firebaseArray','FURL',])
   .service("blogPostService", function($firebaseArray){
     var ref = new Firebase('https://https://ngblogapp.firebaseio.com/');// FIREBASE OBJ  
     var blogPostsArray = $firebaseArray(ref);

@@ -1,4 +1,4 @@
-angular.module('app.controllers',['app.directives', 'blogService'])
+angular.module('app.controllers',['app.directives'])
     .controller('PostController', ['$scope', '$http', function($scope, $http){
         $http.get('../../../data/posts.json').success(function(data){
             $scope.posts = data;
@@ -13,17 +13,14 @@ angular.module('app.controllers',['app.directives', 'blogService'])
         $http.get('../../../data/pages.json').success(function(data){
             $scope.page = data[$routeParams.id];
             console.log(data[$routeParams.id].title);// prints the title of the page
-            console.log('active tab is' + activetab);
         });
         
     }])
-    .controller('blogPostsController',["$scope","FURL", "$firebaseArray",function($scope, FURL, $firebaseArray){
+    .controller('blogPostsController',["$scope","FURL","firebase" ,function($scope, FURL, firebase){
         var ref = $firebaseArray(new Firebase(FURL));
         var fireblogPosts = ref.child('post'); //adds a child 'post' object to the fb array
 
         $scope.addPost = function(newpost){
-            fireblogPosts.$add({text: newpost });
+            return addblogPost(newpost);
         };
     }]);
-
-    

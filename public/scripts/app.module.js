@@ -3,7 +3,6 @@ var app=angular.module('myBlogApp',
   [
   'ngRoute',
   'app.controllers',
-  'blogService',
   'app.directives',
   'firebase'
   ])
@@ -13,7 +12,7 @@ var app=angular.module('myBlogApp',
             templateUrl: '../views/posts.html',
             controller: 'PostController'
         }).when('/post/:id',{
-            templateUrl:'views/singlepost.html',
+            templateUrl:'../views/singlepost.html',
             controller: 'SinglePostController'
         }).when('/page/:id',{
             templateUrl:'../views/page.html',
@@ -22,5 +21,22 @@ var app=angular.module('myBlogApp',
           redirectTo: '/'
         });
     }
-]);
+  ]);
+/*  .service("blogPostService", function($firebaseArray){
+    var ref = new Firebase('FURL');// FIREBASE OBJ  
+    var blogPostsArray = $firebaseArray(ref);
+
+    this.getPosts = function(){
+      return blogPostsArray; // Read data base
+    };
+
+    this.addblogPost = function(newpost){
+      return blogPostsArray.$add(newpost); //push to array
+    };
+
+    this.updateblogPosts = function(post){
+      return blogPostsArray.$save(post); // saves post state 
+    };
+
+  });*/
 
