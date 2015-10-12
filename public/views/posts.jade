@@ -1,6 +1,13 @@
 div(class="container")
-  article(ng-repeat='post in posts')
-    h1(class="page-header") 
-      a(href='#/post/{{posts.indexOf(post)}}'){{post.title}}
-    p {{post.exerpt}}
-    a(href="#/post/{{posts.indexOf(post)}}")'Read more &rarr;'
+  
+  div(class="col-md-offset-9 col-md-3")
+    //span(class="glyphicon glyphicon-search" aria-hidden="true")
+    input(type="text" class="form-control" ng-model="searchPost" placeholder="Search")
+
+
+
+  article(ng-repeat="post in posts | filter: searchPost | orderBy: post.title")
+    h1(class="page-header")
+      a(href="#/post/{{post.$id}}"){{post.title}}
+        h3 {{post.text | limitTo: 30}}{{post.text.length > 30? "...": ""}}    
+          i {{post.datetime | date:short}}

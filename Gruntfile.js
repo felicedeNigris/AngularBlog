@@ -29,7 +29,8 @@ module.exports = function(grunt){
           'public/views/posts.html':'public/views/posts.jade',
           'public/views/navbar.html':'public/views/navbar.jade',
           'public/views/singlepost.html':'public/views/singlepost.jade',
-          'public/views/page.html':'public/views/page.jade'
+          'public/views/page.html':'public/views/page.jade',
+          'public/views/createaPost.html':'public/views/createaPost.jade',
         }
       }
     },
