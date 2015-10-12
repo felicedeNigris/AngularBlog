@@ -6,18 +6,16 @@ var app=angular.module('myBlogApp',
   'app.directives',
   'firebase'
   ])
-    .constant('FURL','https://https://ngblogapp.firebaseio.com/')
     .config(['$routeProvider', function($routeProvider){
         $routeProvider.when('/',{
             templateUrl: '../views/posts.html',
-            //controller: 'ShowPostController'
             controller: 'postController'
-        }).when('/post/:id',{
+        }).when('/post/:postId',{
             templateUrl:'../views/singlepost.html',
-            controller: 'SinglePostController'
-        }).when('/page/:id',{
+            controller: 'postController'
+        }).when('/page/:postId',{
             templateUrl:'../views/page.html',
-            controller: 'postController' //'PageController'
+            controller: 'PageController' //'PageController'
         }).when('/create',{
             templateUrl:'../views/createaPost.html',
             controller:'postController'
@@ -32,20 +30,26 @@ app.factory("Blog",["$firebaseArray", function($firebaseArray){
     var blogPostsArray = $firebaseArray(ref);
     
       return{
-        getPosts: function(postId){
-          return blogPostsArray;
+
+        allPosts: blogPostsArray, // all fb objects
+
+        getPost: function(postId){
+          return $firebaseArray((ref).child(postId)); //returns fb object based on id tag
         },
+
         addPost: function(newpost){
           newpost.datetime = Firebase.ServerValue.TIMESTAMP;
           return blogPostsArray.$add(newpost); //push to array
         }
+
       };
+
   }]);
   
   
   app.controller('postController',["$scope", "$location", "Blog",function($scope, $location, Blog){
     
-    $scope.posts = Blog.getPosts(); //All blog posts
+    $scope.posts = Blog.allPosts; //All blog posts
 
 
     $scope.addPost = function(newpost){
@@ -61,14 +65,43 @@ app.factory("Blog",["$firebaseArray", function($firebaseArray){
   app.controller('editPostCTRLR',["$scope","Blog",function($scope){
     ///something here
   }]);
-  app.controller('PageController', ['$scope', '$http', '$routeParams', '' ,function($scope,$http,$routeParams){
-        $http.get('../../../data/pages.json').success(function(data){
-            $scope.page = data[$routeParams.id];
-            console.log(data[$routeParams.id].title);// prints the title of the page
 
-        });
+
+  app.controller('PageController', ['$scope','$routeParams', 'Blog' ,function($scope,Blog,$routeParams){
+
+  $scope.searchPosts = '';
+
+  $scope.posts = Blog.allPosts; //all posts
+
+  $scope.listMode = true;
+
+  if($routeParams.postId){
+    var post = Blog.getPost($routeParams.postId).$asObject(); // get routeParams postId
+    $scope.listMode = false;
+    setSelectedPost(post);
+  }
+
+  function setSelectedPost(post){
+   // $scope.selectedPost = post;
+
+  }
+
+
+
   }]);
 
+/*
+function setSelectedTask(task) {
+    $scope.selectedTask = task;
+    
+    // We check isTaskCreator only if user signedIn 
+    // so we don't have to check every time normal guests open the task
+    if($scope.signedIn()) {
+      // Check if the current login user is the creator of selected task
+      $scope.isTaskCreator = Task.isCreator;
 
+      // Check if the selectedTask is open
+      $scope.isOpen = Task.isOpen;
+    }
 
-
+*/

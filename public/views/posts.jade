@@ -6,7 +6,7 @@ div(class="container")
 
 
 
-  article(ng-repeat="post in posts | filter: searchPost | orderBy: post.title")
+  article(ng-repeat="post in posts | filter: searchPost | orderBy: date:'medium' ")
     h1(class="page-header")
       a(href="#/post/{{post.$id}}"){{post.title}}
         h3 {{post.text | limitTo: 30}}{{post.text.length > 30? "...": ""}}    

@@ -9,7 +9,7 @@ angular.module('app.controllers',['app.directives'])
             $scope.post = data[$routeParams.id];
         });
     }])
-    .controller('PageController', ['$scope', '$http', '$routeParams', '' ,function($scope,$http,$routeParams){
+    .controller('PdageController', ['$scope', '$http', '$routeParams', '' ,function($scope,$http,$routeParams){
         $http.get('../../../data/pages.json').success(function(data){
             $scope.page = data[$routeParams.id];
             console.log(data[$routeParams.id].title);// prints the title of the page
