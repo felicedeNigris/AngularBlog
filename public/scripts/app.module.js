@@ -6,6 +6,7 @@ var app=angular.module('myBlogApp',
   'app.directives',
   'firebase'
   ])
+    .constant('FBURL', "https://ngblogapp.firebaseio.com/posts") //fburl
     .config(['$routeProvider', function($routeProvider){
         $routeProvider.when('/',{
             templateUrl: '../views/posts.html',
@@ -15,7 +16,7 @@ var app=angular.module('myBlogApp',
             controller: 'postController'
         }).when('/page/:postId',{
             templateUrl:'../views/page.html',
-            controller: 'PageController' //'PageController'
+            controller: 'postController' //'PageController'
         }).when('/create',{
             templateUrl:'../views/createaPost.html',
             controller:'postController'
@@ -24,18 +25,15 @@ var app=angular.module('myBlogApp',
         });
     }
   ]);
-app.factory("Blog",["$firebaseArray", function($firebaseArray){
+app.factory("Blog",["$firebaseArray","$routeParams", function($firebaseArray, $routeParams){
   
     var ref = new Firebase("https://ngblogapp.firebaseio.com/posts");// FIREBASE OBJ  
     var blogPostsArray = $firebaseArray(ref);
-    
       return{
 
-        allPosts: blogPostsArray, // all fb objects
+        id: $routeParams.postId,
 
-        getPost: function(postId){
-          return $firebaseArray((ref).child(postId)); //returns fb object based on id tag
-        },
+        allPosts: blogPostsArray, // all fb objects
 
         addPost: function(newpost){
           newpost.datetime = Firebase.ServerValue.TIMESTAMP;
@@ -45,63 +43,37 @@ app.factory("Blog",["$firebaseArray", function($firebaseArray){
       };
 
   }]);
+
+
   
+app.controller('postController',["$scope", "$location","$routeParams","Blog","FBURL", "$firebaseObject" ,function($scope,$location,$routeParams,Blog,FBURL,$firebaseObject){
   
-  app.controller('postController',["$scope", "$location", "Blog",function($scope, $location, Blog){
-    
-    $scope.posts = Blog.allPosts; //All blog posts
+  $scope.posts = Blog.allPosts; //All blog posts
+  var postId = $routeParams.postId;
 
-
-    $scope.addPost = function(newpost){
-      Blog.addPost($scope.newpost);
-      //$location.path('/'); //redirects to home page
-      console.log(newpost);
-      console.log($scope.posts); // all posts
-      $scope.newpost ={}; //reset the message
-    };
-
-  }]);
-
-  app.controller('editPostCTRLR',["$scope","Blog",function($scope){
-    ///something here
-  }]);
-
-
-  app.controller('PageController', ['$scope','$routeParams', 'Blog' ,function($scope,Blog,$routeParams){
-
-  $scope.searchPosts = '';
-
-  $scope.posts = Blog.allPosts; //all posts
-
-  $scope.listMode = true;
-
-  if($routeParams.postId){
-    var post = Blog.getPost($routeParams.postId).$asObject(); // get routeParams postId
-    $scope.listMode = false;
-    setSelectedPost(post);
+  if(postId){
+    $scope.selectedPost = getPost(postId); // gets unique object based on its id with get post function
   }
 
-  function setSelectedPost(post){
-   // $scope.selectedPost = post;
-
+  function getPost(postId){
+    var ref = new Firebase(FBURL + "/" +postId);
+    return $firebaseObject(ref);
   }
 
+  $scope.addPost = function(newpost){
+    Blog.addPost($scope.newpost);
+    //$location.path('/'); //redirects to home page
+    console.log(newpost);
+    console.log($scope.posts); // all posts
+    $scope.newpost ={}; //reset the message
+  };
+
+  $scope.currentPost = function(postId){
+    Blog.getPost(postId);
+    console.log(postId);
+  };
+
+}]);
 
 
-  }]);
 
-/*
-function setSelectedTask(task) {
-    $scope.selectedTask = task;
-    
-    // We check isTaskCreator only if user signedIn 
-    // so we don't have to check every time normal guests open the task
-    if($scope.signedIn()) {
-      // Check if the current login user is the creator of selected task
-      $scope.isTaskCreator = Task.isCreator;
-
-      // Check if the selectedTask is open
-      $scope.isOpen = Task.isOpen;
-    }
-
-*/
