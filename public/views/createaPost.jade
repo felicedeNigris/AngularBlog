@@ -1,14 +1,13 @@
-
 br
 br
-  div(class="container")
-    form(class="form-horizontal" ng-submit="addPost(newpost)")
-        div(class="form-group")
-          input(type="text" class="form-control" placeholder="Title your post" ng-model="newpost.title")
-          br
-        div(class="form-group")
-          textarea(class="form-control" placeholder="What's on your mind?" rows="3" ng-model="newpost.text")
-          button(type="submit"  class="btn btn-default") Publish
+div(class="container")
+  form(class="form-horizontal" ng-submit="addPost(newpost)")
+      div(class="form-group")
+        input(type="text" class="form-control" placeholder="Title your post" ng-model="newpost.title")
+        br
+      div(class="form-group")
+        textarea(class="form-control" placeholder="What's on your mind?" rows="3" ng-model="newpost.text")
+        button(type="submit"  class="btn btn-default") Publish
 
 
 

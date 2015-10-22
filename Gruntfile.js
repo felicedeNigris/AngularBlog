@@ -5,8 +5,8 @@ module.exports = function(grunt){
     pkg: grunt.file.readJSON('package.json'),
    
     // sass compliler 
-    sass: {                            
-      dist: {    
+    sass: {
+      dist: {
         options: {
           style: 'compressed'
         },
@@ -31,6 +31,7 @@ module.exports = function(grunt){
           'public/views/singlepost.html':'public/views/singlepost.jade',
           'public/views/page.html':'public/views/page.jade',
           'public/views/createaPost.html':'public/views/createaPost.jade',
+          'public/views/edit.html':'public/views/edit.jade'
         }
       }
     },

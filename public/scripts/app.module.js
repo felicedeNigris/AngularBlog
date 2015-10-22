@@ -19,6 +19,9 @@ var app=angular.module('myBlogApp',
             controller: 'postController' //'PageController'
         }).when('/create',{
             templateUrl:'../views/createaPost.html',
+            controller:'postController',
+        }).when('/edit/:postId',{
+            templateUrl:'../views/edit.html',
             controller:'postController'
         }).otherwise({
           redirectTo: '/'
@@ -71,6 +74,11 @@ app.controller('postController',["$scope", "$location","$routeParams","Blog","FB
   $scope.currentPost = function(postId){
     Blog.getPost(postId);
     console.log(postId);
+  };
+
+  $scope.editPost = function(post){
+    $scope.selectedPost.$save(post);
+    $location.path('/');
   };
 
 }]);
