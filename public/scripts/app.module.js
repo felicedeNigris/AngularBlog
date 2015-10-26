@@ -2,9 +2,10 @@
 var app=angular.module('myBlogApp',
   [
   'ngRoute',
-  'app.controllers',
-  'app.directives',
-  'firebase'
+  'firebase',
+  'app.directives', //navbar directive
+  'AuthService', //Auth service
+  'AuthLoginControllers'
   ])
     .constant('FBURL', "https://ngblogapp.firebaseio.com/posts") //fburl
     .config(['$routeProvider', function($routeProvider){
@@ -23,6 +24,9 @@ var app=angular.module('myBlogApp',
         }).when('/edit/:postId',{
             templateUrl:'../views/edit.html',
             controller:'postController'
+        }).when('/registerlogin/',{
+            templateUrl:'../views/RegisterLogin.html',
+            controller:'postController'
         }).otherwise({
           redirectTo: '/'
         });
@@ -30,26 +34,24 @@ var app=angular.module('myBlogApp',
   ]);
 app.factory("Blog",["$firebaseArray","$routeParams", function($firebaseArray, $routeParams){
   
-    var ref = new Firebase("https://ngblogapp.firebaseio.com/posts");// FIREBASE OBJ  
-    var blogPostsArray = $firebaseArray(ref);
-      return{
+  var ref = new Firebase("https://ngblogapp.firebaseio.com/posts");// FIREBASE OBJ  
+  var blogPostsArray = $firebaseArray(ref);
+    return{
 
-        id: $routeParams.postId,
+      id: $routeParams.postId,
 
-        allPosts: blogPostsArray, // all fb objects
+      allPosts: blogPostsArray, // all fb objects
 
-        addPost: function(newpost){
-          newpost.datetime = Firebase.ServerValue.TIMESTAMP;
-          return blogPostsArray.$add(newpost); //push to array
-        }
-
-      };
-
+      addPost: function(newpost){
+        newpost.datetime = Firebase.ServerValue.TIMESTAMP;
+        return blogPostsArray.$add(newpost); //push to array
+      }
+    };
   }]);
 
 
   
-app.controller('postController',["$scope", "$location","$routeParams","Blog","FBURL", "$firebaseObject" ,function($scope,$location,$routeParams,Blog,FBURL,$firebaseObject){
+app.controller('postController',["$scope", "$location","$routeParams","Blog","FBURL", "$firebaseObject", function($scope,$location,$routeParams,Blog,FBURL,$firebaseObject){
   
   $scope.posts = Blog.allPosts; //All blog posts
   var postId = $routeParams.postId;
@@ -81,6 +83,11 @@ app.controller('postController',["$scope", "$location","$routeParams","Blog","FB
     $location.path('/');
   };
 
+}]);
+
+app.controller("MyAuthCtrl", ["$scope", "$firebaseAuth", function($scope, $firebaseAuth) {
+  var ref = new Firebase(FBURL);
+  $scope.authObj = $firebaseAuth(ref);
 }]);
 
 

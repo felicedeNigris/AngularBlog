@@ -25,16 +25,16 @@ html(lang="en" ng-app="myBlogApp")
     script(src="../../bower_components/angular-route/angular-route.min.js")
     //ngapp module
     script(src="../scripts/app.module.js") 
-    //ng controllers.js
-    script(src="../scripts/controllers/controllers.js")
-    //ng navbar directive
-    script(src="../scripts/directives/navbar_directive.js")
-    //ng blogpost service    
-    //script(src="../scripts/services/blogPostService.js")
     //ng firebase
     script(src="../../bower_components/firebase/firebase.js")
     //ng fire 
     script(src="../../bower_components/angularfire/dist/angularfire.min.js")
+    //ng navbar directive
+    script(src="../scripts/directives/navbar_directive.js")
+    //ng Auth service   
+    script(src="../scripts/services/Auth.js")
+    //ngcontroller authlogin
+    script(src="../scripts/controllers/authlogin.js")
     script(type="text/javascript").
         $(document).ready(function(){
             $.material.init();

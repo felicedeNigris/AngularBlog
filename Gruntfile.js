@@ -31,7 +31,8 @@ module.exports = function(grunt){
           'public/views/singlepost.html':'public/views/singlepost.jade',
           'public/views/page.html':'public/views/page.jade',
           'public/views/createaPost.html':'public/views/createaPost.jade',
-          'public/views/edit.html':'public/views/edit.jade'
+          'public/views/edit.html':'public/views/edit.jade',
+          'public/views/RegisterLogin.html':'public/views/RegisterLogin.jade'
         }
       }
     },

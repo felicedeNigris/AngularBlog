@@ -3,6 +3,8 @@ br
 div(class="container")
   form(class="form-horizontal" ng-submit="addPost(newpost)")
       div(class="form-group")
+        br
+        span(class="glyphicon glyphicon-pencil" aria-hidden="true")
         input(type="text" class="form-control" placeholder="Title your post" ng-model="newpost.title")
         br
       div(class="form-group")
@@ -10,6 +12,7 @@ div(class="container")
         button(type="submit"  class="btn btn-default") Publish
 
 
-
-
-
+script(type="text/javascript").
+        $(document).ready(function(){
+            $.material.init();
+        });
