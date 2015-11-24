@@ -5,7 +5,6 @@ var app=angular.module('myBlogApp',
   'firebase',
   'app.directives', //navbar directive
   'AuthService', //Auth service
-  'AuthLoginControllers'
   ])
     .constant('FBURL', "https://ngblogapp.firebaseio.com/posts") //fburl
     .config(['$routeProvider', function($routeProvider){
@@ -24,9 +23,12 @@ var app=angular.module('myBlogApp',
         }).when('/edit/:postId',{
             templateUrl:'../views/edit.html',
             controller:'postController'
-        }).when('/registerlogin/',{
-            templateUrl:'../views/RegisterLogin.html',
-            controller:'postController'
+        }).when('/register/',{
+            templateUrl:'../views/Register.html',
+            controller:'AuthController'
+        }).when('/login/',{
+            templateUrl:'../views/Login.html',
+            controller:'AuthController'
         }).otherwise({
           redirectTo: '/'
         });
@@ -85,10 +87,31 @@ app.controller('postController',["$scope", "$location","$routeParams","Blog","FB
 
 }]);
 
-app.controller("MyAuthCtrl", ["$scope", "$firebaseAuth", function($scope, $firebaseAuth) {
-  var ref = new Firebase(FBURL);
-  $scope.authObj = $firebaseAuth(ref);
-}]);
+/*
+app.controller("AuthorizedUser",["$scope", "$firebaseAuth", "FBURL",
+  function($scope, $firebaseAuth, FBURL){
+    var ref = new Firebase(FBURL);
+
+    //auth object
+    $scope.authObj = $firebaseAuth(ref);
+   
+    //create a user
+    $scope.authObj.$createUser({
+      email: "",
+      password: ""
+    }).then(function(userData){
+        console.log("User " + userData.uid + " created successfully!");
+        return $scope.authObj.$authWithPassword({
+          email: "my@email.com",
+          password: "mypassword"
+        });
+    }).then(function(authData) {
+        console.log("Logged in as:", authData.uid);
+    }).catch(function(error) {
+      console.error("Error: ", error);
+});
+
+}]);*/
 
 
 

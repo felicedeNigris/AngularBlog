@@ -1,0 +1,20 @@
+div(class="container")
+  br
+  br
+  h1 Login
+  form
+    div(class="form-group" ng-submit="register")
+      label(for="exampleInputEmail1") Email Address
+      br
+      span(class="glyphicon glyphicon-envelope" aria-hidden="true")
+      input(type="email" class="form-control" ng-model="user.email" placeholder="Email" required)
+    div(class="form-group")
+      label(for="exampleInputPassword1") Password 
+      br
+      span(class="glyphicon glyphicon-lock" aria-hidden="true")
+      input(type="password" class="form-control" ng-model="user.password" placeholder="Password")
+      button(type="submit"  class="btn btn-black") Login
+script(type="text/javascript").
+      $(document).ready(function(){
+          $.material.init();
+      });  

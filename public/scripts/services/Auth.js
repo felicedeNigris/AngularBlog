@@ -17,6 +17,7 @@ angular.module('AuthService',[])
       return auth.$createUser({email: user.email, password: user.password})
       .then(function(){
         return Auth.login(user);
+
       });
     },
     logout: function(){

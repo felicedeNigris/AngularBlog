@@ -1,0 +1,29 @@
+div(class="container")
+  
+  br
+  br
+  h1 Register
+  form(ng-submit="register(user)")
+    div(class="input-group")
+      div(class="input-group-addon")
+        span(class="glyphicon glyphicon-user" aria-hidden="true")
+      input(type="name" class="form-control" ng-model="user.name" placeholder="Name" required)
+    br
+    br
+    div(class="input-group")
+      div(class="input-group-addon")
+        span(class="glyphicon glyphicon-envelope" aria-hidden="true")
+      input(type="email" class="form-control" ng-model="user.email" placeholder="Email" required)
+    br
+    br
+    div(class="input-group")
+      div(class="input-group-addon")
+        span(class="glyphicon glyphicon-lock" aria-hidden="true")
+      input(type="password" class="form-control" ng-model="user.password" placeholder="Password" required)
+    br
+    br
+    input(type="submit"  value="Register" class="btn btn-danger")
+script(type="text/javascript").
+        $(document).ready(function(){
+            $.material.init();
+        });  
