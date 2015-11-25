@@ -1,5 +1,5 @@
 
-<div class="navbar navabar-default">
+<div ng-controller="NavCtrlr" class="navbar navabar-default">
   <div class="navbar-header">
     <button type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse" class="navbar-toggle"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/#/" class="navbar-brand">My Blog</a>
   </div>
@@ -9,11 +9,12 @@
     </ul>
     <div class="navbar-collapse collapse navbar-responsive-collapse">
       <ul class="nav navbar-nav">
-        <li><a href="#/create">Create a Post</a></li>
+        <li ng-show="signedIn()"><a href="#/create">Create a Post</a></li>
       </ul>
       <ul class="nav navbar-nav right-side-nav">
-        <li><a href="#/register">Register</a></li>
-        <li><a href="#/login">Login</a></li>
+        <li ng-hide="signedIn()"><a href="#/register">Register</a></li>
+        <li ng-hide="signedIn()"><a href="#/login">Login</a></li>
+        <li ng-show="signedIn()"><a href="" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon-user"></span></a></li>
       </ul>
     </div>
   </div>
