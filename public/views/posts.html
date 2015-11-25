@@ -6,7 +6,7 @@
   </div>
   <article ng-repeat="post in posts | filter: searchPost | orderBy: date:'medium' ">
     <h1 class="page-header"><a ng-href="#/post/{{post.$id}}">{{post.title}}
-        <h3>{{post.text | limitTo: 30}}{{post.text.length > 30? "...": ""}}    <i>{{post.datetime | date:short}}</i></h3></a></h1><a ng-href="#/edit/{{post.$id}}">Edit {{post.title}} </a>
-    <!--hide this with ng-hide when not logged in-->
+        <h3>{{post.text | limitTo: 30}}{{post.text.length > 30? "...": ""}}    <i>{{post.datetime | date:short}}</i></h3></a></h1>
+    <div ng-show="signedIn()"><a ng-href="#/edit/{{post.$id}}">Edit </a><br/><a href="" ng-click="posts.$remove(post)">Delete </a></div>
   </article>
 </div>

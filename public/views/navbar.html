@@ -11,10 +11,15 @@
       <ul class="nav navbar-nav">
         <li ng-show="signedIn()"><a href="#/create">Create a Post</a></li>
       </ul>
-      <ul class="nav navbar-nav right-side-nav">
+      <ul class="nav navbar-nav navbar-right">
         <li ng-hide="signedIn()"><a href="#/register">Register</a></li>
         <li ng-hide="signedIn()"><a href="#/login">Login</a></li>
-        <li ng-show="signedIn()"><a href="" data-toggle="dropdown" class="dropdown-toggle"><span class="glyphicon-user"></span></a></li>
+        <li ng-show="signedIn()" class="dropdown"><a href="" data-toggle="dropdown" class="dropdown-toggle"><i class="mdi mdi-account"></i><span class="caret"></span></a>
+          <ul role="menu" class="dropdown-menu">
+            <li><a href="" data-toggle="modal" data-target="#pasModal"><i class="mdi mdi-account-key">   Change Password</i></a></li>
+            <li><a href="" ng-click="logout()"><i class="mdi mdi-account-remove">  Log Out</i></a></li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>

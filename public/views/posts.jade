@@ -11,5 +11,7 @@ div(class="container")
       a(ng-href="#/post/{{post.$id}}"){{post.title}}
         h3 {{post.text | limitTo: 30}}{{post.text.length > 30? "...": ""}}    
           i {{post.datetime | date:short}}
-    a(ng-href="#/edit/{{post.$id}}") Edit {{post.title}} 
-    //hide this with ng-hide when not logged in
+    div(ng-show="signedIn()")
+      a(ng-href="#/edit/{{post.$id}}") Edit 
+      br
+      a(href="" ng-click="posts.$remove(post)") Delete 
