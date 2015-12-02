@@ -1,8 +1,7 @@
 app.controller('NavCtrlr',function($scope, $location, Auth){
 
   $scope.signedIn = Auth.signedIn;
-  //var signedIn = Auth.auth;
-
+  $scope.currentUser = Auth.user;
   $scope.authState = function(signedIn){
     var loggedState = $scope.signedIn.$onAuth(function(authData){
       $scope.authData = authData;

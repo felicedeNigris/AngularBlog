@@ -14,7 +14,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li ng-hide="signedIn()"><a href="#/register">Register</a></li>
         <li ng-hide="signedIn()"><a href="#/login">Login</a></li>
-        <li ng-show="signedIn()" class="dropdown"><a href="" data-toggle="dropdown" class="dropdown-toggle"><i class="mdi mdi-account"></i><span class="caret"></span></a>
+        <li ng-show="signedIn()" class="dropdown"><a href="" data-toggle="dropdown" class="dropdown-toggle">{{currentUser.profile.name}}<i class="mdi mdi-account"></i><span class="caret"></span></a>
           <ul role="menu" class="dropdown-menu">
             <li><a href="" data-toggle="modal" data-target="#pasModal"><i class="mdi mdi-account-key">   Change Password</i></a></li>
             <li><a href="" ng-click="logout()"><i class="mdi mdi-account-remove">  Log Out</i></a></li>

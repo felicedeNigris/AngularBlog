@@ -1,47 +1,66 @@
 angular.module('AuthService',[])
-  .factory('Auth', function(FBURL, $firebaseAuth, $firebase){
+  .factory('Auth', function($firebaseAuth, $firebaseArray){
 
-  var ref = new Firebase(FBURL);
-  var auth = $firebaseAuth(ref);
+  var ref = new Firebase("https://ngblogapp.firebaseio.com/");
+  var authObj = $firebaseAuth(ref);
+  var authData = authObj.$getAuth(); //firebase auth data when you login 
 
   var Auth = {
-
     user:{},
 
+    createProfile: function(authData , user){
+      var profile ={
+        name: user.name,
+        email: user.email
+      };
+     
+        return $firebaseArray(ref.child('user')).$add({id: authData.uid, profile: profile});
+    },
     login: function(user){
-      return auth.$authWithPassword(
+      return authObj.$authWithPassword(
         {email: user.email, password: user.password}
-      );
+      ).then(function(authData) {
+        console.log("Logged in as:", authData.uid);
+        return authData; //check getAuth status
+      }).catch(function(error) {
+        console.error("Authentication failed:", error);
+      }, location.reload()); //reload page after login
     },
     register: function(user){
-      return auth.$createUser({email: user.email, password: user.password})
-      .then(function(){
-        return Auth.login(user);
-
+      return authObj.$createUser({email: user.email, password: user.password})
+      .then(function(userData) {
+        console.log("User " + userData.uid + " created successfully!");
+        return authObj.$authWithPassword({
+          email: user.email,
+          password: user.password,
+        });
+      }).then(function(authData) {
+        console.log("Logged in as:", authData.uid);
+        return Auth.createProfile(authData, user);
+      }).catch(function(error) {
+        console.error("Error: ", error);
       });
     },
     logout: function(){
-      auth.$unauth(); //logout method
+      authObj.$unauth(); //logout method
+      location.reload(); //reload page
     },
     changePassword: function(user){
-      return auth.$changePassword({email: user.email, oldPassword: user.oldpass, newPassword: user.newpass});
+      return authObj.$changePassword({email: user.email, oldPassword: user.oldpass, newPassword: user.newpass});
     },
     signedIn: function(){
-      return !!Auth.user.provider;
+      var  signedin = authData === null ? false : true; //check to see if you are logged in
+      console.log("signed in status is " + signedin);
+      return signedin;
     }
   }; // end Auth
-
-
-  auth.$onAuth(function(authData){
-    if(authData){
-      angular.copy(authData, Auth.user);
-    }
-    else
-    {
-      angular.copy({}, Auth.user);
-    }
-  });
-
+  if (authData) {
+    console.log("Logged in as:", authData.uid);
+    
+    console.log("Logged out");
+  }
   return Auth;
 });
+
+
 

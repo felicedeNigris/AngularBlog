@@ -19,7 +19,7 @@ div(class="navbar navabar-default" ng-controller="NavCtrlr")
         li(ng-hide="signedIn()")
           a(href="#/login") Login
         li(ng-show="signedIn()" class="dropdown")
-          a(href="" class="dropdown-toggle" data-toggle="dropdown")
+          a(href="" class="dropdown-toggle" data-toggle="dropdown") {{currentUser.profile.name}}
             i(class="mdi mdi-account")
             span(class="caret")
           ul(class="dropdown-menu" role="menu")

@@ -85,6 +85,7 @@ app.controller('postController',["$scope", "$location","$routeParams","Blog","FB
     $location.path('/');
   };
 
+
 }]);
 
 /*
