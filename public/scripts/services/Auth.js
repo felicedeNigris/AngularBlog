@@ -22,9 +22,11 @@ angular.module('AuthService',[])
       ).then(function(authData) {
         console.log("Logged in as:", authData.uid);
         return authData; //check getAuth status
+      }).then(function(authData){
+        location.reload(); // reload after login
       }).catch(function(error) {
         console.error("Authentication failed:", error);
-      }, location.reload()); //reload page after login
+      });
     },
     register: function(user){
       return authObj.$createUser({email: user.email, password: user.password})
@@ -36,6 +38,7 @@ angular.module('AuthService',[])
         });
       }).then(function(authData) {
         console.log("Logged in as:", authData.uid);
+        location.reload();
         return Auth.createProfile(authData, user);
       }).catch(function(error) {
         console.error("Error: ", error);

@@ -5,7 +5,7 @@
       <input type="text" placeholder="Title your post" ng-model="newpost.title" class="form-control"/><br/>
     </div>
     <div class="form-group">
-      <textarea placeholder="What's on your mind?" rows="3" ng-model="newpost.text" class="form-control"></textarea>
+      <textarea placeholder="What's on your mind?" rows="3" ng-model="newpost.text" class="form-control"></textarea><a ng-model="newpost.photo" ng-click="pickFile()" class="btn btn-default">Photo Upload      </a>
       <button type="submit" class="btn btn-default">Publish</button>
     </div>
   </form>

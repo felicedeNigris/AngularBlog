@@ -3,11 +3,14 @@ var app=angular.module('myBlogApp',
   [
   'ngRoute',
   'firebase',
+  'angular-filepicker',//angular filepicker
   'app.directives', //navbar directive
   'AuthService', //Auth service
+  'FilePicker'//File Picker Service
   ])
     .constant('FBURL', "https://ngblogapp.firebaseio.com/posts") //fburl
     .config(['$routeProvider', function($routeProvider){
+      
         $routeProvider.when('/',{
             templateUrl: '../views/posts.html',
             controller: 'postController'
@@ -53,7 +56,7 @@ app.factory("Blog",["$firebaseArray","$routeParams", function($firebaseArray, $r
 
 
   
-app.controller('postController',["$scope", "$location","$routeParams","Blog","FBURL", "$firebaseObject", function($scope,$location,$routeParams,Blog,FBURL,$firebaseObject){
+app.controller('postController',["$scope", "$location","$routeParams","Blog","FBURL", "$firebaseObject","$firebaseArray","FilePicker", "$window", function($scope,$location,$routeParams,Blog,FBURL,$firebaseObject,$firebaseArray,FilePicker,$window){
   
   $scope.posts = Blog.allPosts; //All blog posts
   var postId = $routeParams.postId;
@@ -67,12 +70,15 @@ app.controller('postController',["$scope", "$location","$routeParams","Blog","FB
     return $firebaseObject(ref);
   }
 
+
   $scope.addPost = function(newpost){
     Blog.addPost($scope.newpost);
     //$location.path('/'); //redirects to home page
     console.log(newpost);
     console.log($scope.posts); // all posts
     $scope.newpost ={}; //reset the message
+
+
   };
 
   $scope.currentPost = function(postId){
@@ -84,35 +90,23 @@ app.controller('postController',["$scope", "$location","$routeParams","Blog","FB
     $scope.selectedPost.$save(post);
     $location.path('/');
   };
+  
+  $scope.files = JSON.parse($window.localStorage.getItem('files') || '[]');
 
+
+  $scope.pickFile = function(){
+      FilePicker.pick(
+          {mimetype: 'image/*'},
+          $scope.onSuccess
+      );
+  };
+
+  $scope.onSuccess = function(Blob,newpost){
+    $scope.files.push(Blob); //push to filepicker
+    /*$scope.newpost['photo'] = Blob.url; //adds photo url to newpost.photo
+    console.log(Blob.url);*/
+    $window.localStorage.setItem('files', JSON.stringify($scope.files));
+};
 
 }]);
-
-/*
-app.controller("AuthorizedUser",["$scope", "$firebaseAuth", "FBURL",
-  function($scope, $firebaseAuth, FBURL){
-    var ref = new Firebase(FBURL);
-
-    //auth object
-    $scope.authObj = $firebaseAuth(ref);
-   
-    //create a user
-    $scope.authObj.$createUser({
-      email: "",
-      password: ""
-    }).then(function(userData){
-        console.log("User " + userData.uid + " created successfully!");
-        return $scope.authObj.$authWithPassword({
-          email: "my@email.com",
-          password: "mypassword"
-        });
-    }).then(function(authData) {
-        console.log("Logged in as:", authData.uid);
-    }).catch(function(error) {
-      console.error("Error: ", error);
-});
-
-}]);*/
-
-
 

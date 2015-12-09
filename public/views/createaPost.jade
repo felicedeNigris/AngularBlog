@@ -9,10 +9,13 @@ div(class="container")
         br
       div(class="form-group")
         textarea(class="form-control" placeholder="What's on your mind?" rows="3" ng-model="newpost.text")
+        a(class="btn btn-default" ng-model="newpost.photo" ng-click="pickFile()" ) Photo Upload      
         button(type="submit"  class="btn btn-default") Publish
-
 
 script(type="text/javascript").
         $(document).ready(function(){
             $.material.init();
         });
+
+
+  

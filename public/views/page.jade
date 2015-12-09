@@ -1,7 +1,8 @@
 div(class="container")
   h1(class="page-header") {{post.title}}
   p {{post.text}}
-
+  //image(src={{post.picture}} class="img-responsive" alt="Responsive image")
+  //image(src="post.photo" ng-if="post.photo" class="img-responsive" alt="Responsive image")
 //initialize ripple       
 script(type="text/javascript").
         $(document).ready(function(){
