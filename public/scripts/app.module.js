@@ -73,7 +73,7 @@ app.controller('postController',["$scope", "$location","$routeParams","Blog","FB
 
   $scope.addPost = function(newpost){
     Blog.addPost($scope.newpost);
-    //$location.path('/'); //redirects to home page
+    $location.path('/'); //redirects to home page
     console.log(newpost);
     console.log($scope.posts); // all posts
     $scope.newpost ={}; //reset the message
@@ -103,8 +103,8 @@ app.controller('postController',["$scope", "$location","$routeParams","Blog","FB
 
   $scope.onSuccess = function(Blob,newpost){
     $scope.files.push(Blob); //push to filepicker
-    /*$scope.newpost['photo'] = Blob.url; //adds photo url to newpost.photo
-    console.log(Blob.url);*/
+    $scope.newpost['photo'] = Blob.url; //adds photo url to newpost.photo
+    console.log(Blob.url);
     $window.localStorage.setItem('files', JSON.stringify($scope.files));
 };
 
