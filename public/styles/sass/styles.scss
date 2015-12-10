@@ -1,11 +1,11 @@
 $red: #77D3FF;
 $font-stack: Helvetica;
-$black: #000000;
+$black: rgba(25,25,25,0.9);
 
 //over ride navbar material design color to black
-/* .navbar.navbar{
-  background-color:$black;
-} */
+.navbar.navbar{
+  background-color: $black;
+}
 // override a to black w alpha
 a{
   color:rgba(0,0,0,0.18);
@@ -19,4 +19,65 @@ a{
 }
 .mdi-account{
   color:rgb(255,255,255);
+}
+
+.footer{
+  display:inline;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  background-color: rgba(25,25,25,0.9);
+  transition: all 500ms ease-in-out;
+  .container.bottom{
+    color: white;
+    ul{
+      top: 15px;
+      margin: 0px;
+      padding: 0px;
+      list-style: none;
+      float: left;
+      li{
+        margin-right: 3px;
+        display:inline;
+      }
+    }
+    h6{
+      font-weight: 200;
+      top: 0px;
+      margin: 20px;
+      color: rgba(90,90,90,1);
+    }
+  }
+}
+
+
+//Footer styling when screen scale is below 992px
+@media screen and (max-width: 992px){
+  .footer{
+    height: 100px;
+    .container.bottom{
+      margin-left:auto;
+      margin-right:auto;
+      width: 350px;
+      ul{
+        li{
+          font-size: 4em;
+        }
+      }
+      h6{
+      display: none;
+      }
+    }
+  }
+}
+
+//Footer positioning when browser height is below
+
+@media screen and (max-height: 500px){
+  .footer{
+    opacity: 0;
+    bottom: -60px;
+    transition: all 500ms ease-in-out;
+  }
 }

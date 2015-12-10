@@ -5,6 +5,7 @@ var app=angular.module('myBlogApp',
   'firebase',
   'angular-filepicker',//angular filepicker
   'app.directives', //navbar directive
+  'footerDirective', //footer directive
   'AuthService', //Auth service
   'FilePicker'//File Picker Service
   ])
@@ -91,21 +92,29 @@ app.controller('postController',["$scope", "$location","$routeParams","Blog","FB
     $location.path('/');
   };
   
-  $scope.files = JSON.parse($window.localStorage.getItem('files') || '[]');
+  $scope.files = [];
 
 
   $scope.pickFile = function(){
-      FilePicker.pick(
-          {mimetype: 'image/*'},
+      FilePicker.pickMultiple(
+          {
+            mimetype: 'image/*',
+            maxFiles: 4
+          },
           $scope.onSuccess
       );
   };
 
-  $scope.onSuccess = function(Blob,newpost){
-    $scope.files.push(Blob); //push to filepicker
-    $scope.newpost['photo'] = Blob.url; //adds photo url to newpost.photo
-    console.log(Blob.url);
-    $window.localStorage.setItem('files', JSON.stringify($scope.files));
+  $scope.onSuccess = function(Blobs,newpost){
+    $scope.files.push(Blobs); //push to filepicker
+    
+    var imageURLs = []; //new image urls array
+    Blobs.forEach(function(file){
+      imageURLs.push(file.url); //inserts Blob.urls to imageURLs array
+    });
+    $scope.newpost['photo'] = imageURLs; //adds photo urls array to newpost.photo which stores to firebase 'newpost object'
+    console.log(Blobs.url);
+    $window.localStorage.setItem('files', JSON.stringify(Blobs.url));
 };
 
 }]);

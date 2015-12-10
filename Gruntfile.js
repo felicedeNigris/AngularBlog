@@ -33,7 +33,8 @@ module.exports = function(grunt){
           'public/views/createaPost.html':'public/views/createaPost.jade',
           'public/views/edit.html':'public/views/edit.jade',
           'public/views/Register.html':'public/views/Register.jade',
-          'public/views/Login.html':'public/views/Login.jade'
+          'public/views/Login.html':'public/views/Login.jade',
+          'public/views/footer_bar.html':'public/views/footer_bar.jade'
         }
       }
     },
