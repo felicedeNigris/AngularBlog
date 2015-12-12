@@ -8,7 +8,7 @@ div(class="navbar navabar-default" ng-controller="NavCtrlr")
   div(class="navbar-collapse collapse navbar-responsive-collapse")
     ul(class="nav navbar-nav")
       li(ng-repeat="page in pages")
-        a(href="#/page/{{pages.indexOf(page)}}" ) {{page.title}}
+        a(href="#/page/{{pages.indexOf(page)}}") {{page.title}}
     div(class="navbar-collapse collapse navbar-responsive-collapse")
       ul(class="nav navbar-nav")
         li(ng-show="signedIn()")
@@ -24,8 +24,33 @@ div(class="navbar navabar-default" ng-controller="NavCtrlr")
             span(class="caret")
           ul(class="dropdown-menu" role="menu")
             li
-              a(href="" data-toggle="modal" data-target="#pasModal")
-                i(class="mdi mdi-account-key")    Change Password
+              a(data-toggle="modal" data-target="#pasModal")
+                i(class="mdi mdi-account-key" style="cursor:pointer;") Change Password
             li
               a(href="" ng-click="logout()")
                 i(class="mdi mdi-account-remove")   Log Out
+
+
+
+  div(class="modal fade" id="pasModal" role="dialog"  ng-controller="AuthController")
+    div(class="modal-dialog")
+      div(class="modal-content")
+        div(class="modal-header")
+          button(type="button" class="close" data-dismiss="modal" aria-label="Close")
+          span(aria-hidden="true") &times;
+          h5(class="modal-title") Change Password
+        div(class="modal-body")
+          form(ng-submit="changePassword(user)")
+            input(type="email" ng-model="user.email" placeholder="Email" class="form-control" required)
+            br
+            input(type="password" ng-model="user.oldpass" placeholder="Old Password" class="form-control" required)
+            br
+            input(type="password" ng-model="user.newpass" placeholder="New Password" class="form-control" required)
+            br
+            input(type="submit" value="Update"  class="btn btn-danger")
+
+
+  script(type="text/javascript").
+    $(document).ready(function(){
+        $.material.init();
+    });  
